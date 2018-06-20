@@ -16,3 +16,11 @@ spring:
     name: eureka
 server:
   port: 8761
+  
+# 开启基于HTTP basic的认证
+#security:
+#  basic:
+#    enabled: true
+#  user:
+#    name: user
+#    password: 123456
