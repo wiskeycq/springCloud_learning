@@ -1,5 +1,6 @@
 package com.cq.controller;
 
+import com.cq.DTO.CartDTO;
 import com.cq.VO.ProductInfoVO;
 import com.cq.VO.ProductVO;
 import com.cq.VO.ResultVO;
@@ -10,9 +11,7 @@ import com.cq.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,4 +68,22 @@ public class ProductController {
         }
         return ResultVO.success(productVOList);
     }
+
+    /**
+     * 获取商品列表（给订单服务使用）
+     * 注意：如果使用RequestBody这个注解，则必须使用post请求的方式
+     */
+    @PostMapping("/listForOrder")
+    public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList) {
+        return productService.findList(productIdList);
+    }
+
+    /**
+     * 减库存（给订单服务使用）
+     */
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(List<CartDTO> cartDTOList) {
+        productService.decreaseStock(cartDTOList);
+    }
+
 }
