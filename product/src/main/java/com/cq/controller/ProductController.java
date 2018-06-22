@@ -82,7 +82,7 @@ public class ProductController {
      * 减库存（给订单服务使用）
      */
     @PostMapping("/decreaseStock")
-    public void decreaseStock(List<CartDTO> cartDTOList) {
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList) {
         productService.decreaseStock(cartDTOList);
     }
 

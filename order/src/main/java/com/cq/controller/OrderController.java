@@ -38,6 +38,7 @@ public class OrderController {
      * 4. 扣库存(调用商品服务)
      * 5. 订单入库
      */
+    @RequestMapping("/create")
     public ResultVO create(@Valid OrderParam orderParam, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.error("【创建订单】参数不正确, OrderParam={}", orderParam);
